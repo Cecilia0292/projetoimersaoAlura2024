@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>MedicamentosSuSBrasil</title>
+</head>
+
+<body>
+    <header>
+        <h1>Medicamentos SUS Brasil</h1>
+        <div class="video-container">
+            <video autoplay muted loop>
+                <source src="medcores.mp4" type="video/mp4">
+            </video>
+        </div>
+        <section>
+            <input type="text" id="busca" placeholder="Digite o nome do medicamento">
+            <button onclick="busca()">Buscar</button>
+        </section>
+    </header>
+    <main>
+        <section class="resultados-pesquisa" id="resultados-pesquisa">
+        </section>
+    </main>
+    <footer>
+        <p> 2024- MedicamentosSUSBrasil. Todos os direitos reservados. Contatos:(47) 99900-0602
+            email:farmedicamentosusbr@gmail.com.br
+        </p>
+    </footer>
+    <script src="dados.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
