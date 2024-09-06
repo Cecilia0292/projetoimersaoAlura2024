@@ -1,57 +1,57 @@
 function busca() {
-  // Declara uma função chamada 'busca' que será responsável por exibir os resultados da pesquisa.
+  // Busca por termos em um conjunto de dados e exibe os resultados.
 
   let section = document.getElementById("resultados-pesquisa");
-  // Obtém a seção HTML com o ID "resultados-pesquisa" e armazena na variável 'section'.
-  // Essa seção será utilizada para inserir os resultados da pesquisa.
-  let campoPesquisa = document.getElementById("campo-pesquisa").value
-  //se campoPesquisa for uma string sem nada
+  // Seção HTML onde os resultados serão exibidos.
+
+  let campoPesquisa = document.getElementById("campo-pesquisa").value;
+  // Valor digitado pelo usuário no campo de pesquisa.
+
+  // Verifica se o usuário digitou algo.
   if (!campoPesquisa) {
+    // Se nada foi digitado, exibe uma mensagem de erro.
     section.innerHTML = "<p>Nada foi encontrado. Tente novamente!</p>"
-    return
+    return;
   }
 
+  // Converte o termo de pesquisa para minúsculas para facilitar a comparação.
   campoPesquisa = campoPesquisa.toLowerCase();
+
+  // Inicializa variáveis para armazenar os valores de cada item durante a iteração.
   let titulo = "";
   let descricao = "";
   let tags = "";
 
   let resultados = "";
-  // Inicializa uma string vazia para armazenar os resultados da pesquisa.
-  // A cada iteração do loop, novos resultados serão concatenados a essa string.
+  // String que armazenará os resultados formatados em HTML.
 
+  // Itera sobre cada item do conjunto de dados.
   for (let dado of dados) {
+    // Converte os valores para minúsculas para facilitar a comparação.
     titulo = dado.titulo.toLowerCase()
     descricao = dado.descricao.toLowerCase()
     tags = dado.tags.toLowerCase()
-    // Inicia um loop 'for...of' para iterar sobre cada elemento 'dado' do array 'dados'.
-    // A cada iteração, um novo resultado será formatado e adicionado à string 'resultados'.
-    if (dado.titulo.includes(campoPesquisa) || dado.descricao.includes(campoPesquisa) || tags.includes(campoPesquisa)) {
-      // cria um novo elemento
-      resultados += `
-    <div class="item-resultado">
-      <h2>
-        <a href="#"target="_blank">${dado.titulo}</a>
-      </h2>
-      <p class="descricao-meta">${dado.descricao}</p>
-      <a href=${dado.link} target="_blank">Buscar por município</a>
-    </div>
-  `;
-    }
 
-    // Dentro do loop, um novo elemento HTML <div> é criado para cada resultado.
-    // As propriedades 'titulo', 'descricao' e 'link' de cada objeto 'dado' são utilizadas para preencher o conteúdo do HTML.
-    // O resultado formatado é então concatenado à string 'resultados'.
+    // Verifica se o termo de pesquisa está presente em algum dos campos do item.
+    if (dado.titulo.includes(campoPesquisa) || dado.descricao.includes(campoPesquisa) || tags.includes(campoPesquisa)) {
+      // Se o item corresponder à pesquisa, cria um novo elemento HTML para exibir o resultado.
+      resultados += `
+        <div class="item-resultado">
+          <h2>
+            <a href="#" target="_blank">${dado.titulo}</a>
+          </h2>
+          <p class="descricao-meta">${dado.descricao}</p>
+          <a href=${dado.link} target="_blank">Buscar por município</a>
+        </div>
+      `;
+    }
   }
 
+  // Se nenhum resultado foi encontrado, exibe uma mensagem de erro.
   if (!resultados) {
     resultados = "<p>Nada foi encontrado. Tente novamente!</p>"
   }
 
+  // Atualiza o conteúdo da seção de resultados com os resultados encontrados.
   section.innerHTML = resultados;
-  // Após o loop, o conteúdo HTML da seção 'section' é substituído pela string 'resultados',
-  // exibindo assim os resultados da pesquisa na página.
 }
-
-
-
